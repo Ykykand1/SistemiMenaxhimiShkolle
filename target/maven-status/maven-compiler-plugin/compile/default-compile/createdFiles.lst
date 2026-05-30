@@ -8,7 +8,6 @@ models\Nota.class
 views\StudentDashboard$1.class
 views\AdminDashboard$4.class
 dao\NotaDAO.class
-db\DebugLog.class
 main\Main.class
 views\AdminDashboard.class
 dao\LendaDAO.class
@@ -31,6 +30,7 @@ views\AdminDashboard$3.class
 views\SignUpView$2.class
 views\AdminDashboard$2.class
 controllers\NotaController.class
+db\EnvConfig.class
 models\Lenda.class
 views\LoginView$2.class
 views\TeacherDashboard$1.class

@@ -58,32 +58,28 @@ public class AdminDashboard extends JFrame {
 
         // Main Container
         JPanel mainContainer = new JPanel(new BorderLayout());
-        mainContainer.setBackground(Color.WHITE);
+        UiTheme.stylePanel(mainContainer);
 
         // Header Panel (Navy Blue)
         JPanel headerPanel = new JPanel(new BorderLayout());
-        headerPanel.setBackground(new Color(26, 35, 126));
+        UiTheme.styleHeaderPanel(headerPanel);
         headerPanel.setPreferredSize(new Dimension(1000, 70));
         headerPanel.setBorder(new EmptyBorder(10, 20, 10, 20));
 
         JLabel lblTitle = new JLabel("School Management System - Admin Dashboard");
         lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 18));
-        lblTitle.setForeground(Color.WHITE);
+        UiTheme.styleHeaderTitle(lblTitle);
         headerPanel.add(lblTitle, BorderLayout.WEST);
 
         JPanel headerRight = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 5));
         headerRight.setOpaque(false);
         
-        JLabel lblWelcome = new JLabel("Mirëseerdhe, " + user.getUsername() + "!");
+        JLabel lblWelcome = new JLabel("Mirëse erdhe, " + user.getUsername() + "!");
         lblWelcome.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        lblWelcome.setForeground(Color.WHITE);
+        UiTheme.styleHeaderTitle(lblWelcome);
         
-        JButton btnLogout = new JButton("Çkyçu");
-        btnLogout.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        btnLogout.setBackground(Color.WHITE);
-        btnLogout.setForeground(new Color(26, 35, 126));
-        btnLogout.setFocusPainted(false);
-        btnLogout.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
+        JButton btnLogout = new JButton("Dil");
+        UiTheme.styleHeaderLogoutButton(btnLogout);
         btnLogout.addActionListener(e -> {
             dispose();
             new LoginView().setVisible(true);
@@ -97,6 +93,7 @@ public class AdminDashboard extends JFrame {
         // JTabbedPane
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        UiTheme.styleTabbedPane(tabbedPane);
 
         // Tab 1 – Nxënësit
         tabbedPane.addTab("Nxënësit", createStudentsPanel());
@@ -121,17 +118,6 @@ public class AdminDashboard extends JFrame {
         refreshGradesTable();
     }
 
-    private void styleTable(JTable table) {
-        table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        table.getTableHeader().setBackground(new Color(26, 35, 126));
-        table.getTableHeader().setForeground(Color.WHITE);
-        table.setRowHeight(28);
-        table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        table.setGridColor(new Color(224, 224, 224));
-        table.setSelectionBackground(new Color(224, 242, 241));
-        table.setSelectionForeground(Color.BLACK);
-    }
-
     // ==========================================
     // TAB 1: STUDENTS PANEL
     // ==========================================
@@ -150,15 +136,10 @@ public class AdminDashboard extends JFrame {
         txtSearch.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         
         JButton btnSearch = new JButton("Kërko");
-        btnSearch.setBackground(new Color(26, 35, 126));
-        btnSearch.setForeground(Color.BLACK);
-        btnSearch.setFocusPainted(false);
+        UiTheme.stylePrimaryButton(btnSearch);
         
         JButton btnClear = new JButton("Pastro");
-        btnClear.setBackground(Color.WHITE);
-        btnClear.setForeground(new Color(26, 35, 126));
-        btnClear.setBorder(BorderFactory.createLineBorder(new Color(26, 35, 126), 1));
-        btnClear.setFocusPainted(false);
+        UiTheme.styleSecondaryButton(btnClear);
 
         searchBar.add(lblSearch);
         searchBar.add(txtSearch);
@@ -173,7 +154,7 @@ public class AdminDashboard extends JFrame {
             public boolean isCellEditable(int r, int c) { return false; }
         };
         tblStudents = new JTable(modelStudents);
-        styleTable(tblStudents);
+        UiTheme.styleTable(tblStudents);
         JScrollPane scroll = new JScrollPane(tblStudents);
         panel.add(scroll, BorderLayout.CENTER);
 
@@ -189,12 +170,9 @@ public class AdminDashboard extends JFrame {
             b.setFont(new Font("Segoe UI", Font.BOLD, 12));
             b.setFocusPainted(false);
         }
-        btnAdd.setBackground(new Color(26, 35, 126));
-        btnAdd.setForeground(Color.BLACK);
-        btnEdit.setBackground(new Color(26, 35, 126));
-        btnEdit.setForeground(Color.BLACK);
-        btnDelete.setBackground(new Color(211, 47, 47)); // Red
-        btnDelete.setForeground(Color.BLACK);
+        UiTheme.stylePrimaryButton(btnAdd);
+        UiTheme.stylePrimaryButton(btnEdit);
+        UiTheme.styleDangerButton(btnDelete);
 
         crudPanel.add(btnAdd);
         crudPanel.add(btnEdit);
@@ -263,9 +241,7 @@ public class AdminDashboard extends JFrame {
         addFieldToDialog(dlg, "Data Lindjes (VVVV-MM-DD):", txtDataLindjes, 4, gbc);
 
         JButton btnSave = new JButton("Ruaj");
-        btnSave.setBackground(new Color(26, 35, 126));
-        btnSave.setForeground(Color.WHITE);
-        btnSave.setFocusPainted(false);
+        UiTheme.stylePrimaryButton(btnSave);
         
         gbc.gridx = 0; gbc.gridy = 5; gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -348,9 +324,7 @@ public class AdminDashboard extends JFrame {
         addFieldToDialog(dlg, "Data Lindjes (VVVV-MM-DD):", txtDataLindjes, 4, gbc);
 
         JButton btnSave = new JButton("Ruaj Ndryshimet");
-        btnSave.setBackground(new Color(26, 35, 126));
-        btnSave.setForeground(Color.BLACK);
-        btnSave.setFocusPainted(false);
+        UiTheme.stylePrimaryButton(btnSave);
         
         gbc.gridx = 0; gbc.gridy = 5; gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -455,7 +429,7 @@ public class AdminDashboard extends JFrame {
             public boolean isCellEditable(int r, int c) { return false; }
         };
         tblTeachers = new JTable(modelTeachers);
-        styleTable(tblTeachers);
+        UiTheme.styleTable(tblTeachers);
         JScrollPane scrollTeachers = new JScrollPane(tblTeachers);
 
         // Right side panel for subject assignments (using scroll panel with checkboxes)
@@ -478,10 +452,7 @@ public class AdminDashboard extends JFrame {
         rightPanel.add(scrollSubjects, BorderLayout.CENTER);
 
         JButton btnSaveAssignment = new JButton("Ruaj Lëndët");
-        btnSaveAssignment.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        btnSaveAssignment.setBackground(new Color(26, 35, 126));
-        btnSaveAssignment.setForeground(Color.WHITE);
-        btnSaveAssignment.setFocusPainted(false);
+        UiTheme.stylePrimaryButton(btnSaveAssignment);
         btnSaveAssignment.setEnabled(false);
         rightPanel.add(btnSaveAssignment, BorderLayout.SOUTH);
 
@@ -503,12 +474,9 @@ public class AdminDashboard extends JFrame {
             b.setFont(new Font("Segoe UI", Font.BOLD, 12));
             b.setFocusPainted(false);
         }
-        btnAdd.setBackground(new Color(26, 35, 126));
-        btnAdd.setForeground(Color.BLACK);
-        btnEdit.setBackground(new Color(26, 35, 126));
-        btnEdit.setForeground(Color.BLACK);
-        btnDelete.setBackground(new Color(211, 47, 47));
-        btnDelete.setForeground(Color.BLACK);
+        UiTheme.stylePrimaryButton(btnAdd);
+        UiTheme.stylePrimaryButton(btnEdit);
+        UiTheme.styleDangerButton(btnDelete);
 
         crudPanel.add(btnAdd);
         crudPanel.add(btnEdit);
@@ -621,9 +589,7 @@ public class AdminDashboard extends JFrame {
         addFieldToDialog(dlg, "Telefon:", txtTelefon, 3, gbc);
 
         JButton btnSave = new JButton("Ruaj");
-        btnSave.setBackground(new Color(26, 35, 126));
-        btnSave.setForeground(Color.WHITE);
-        btnSave.setFocusPainted(false);
+        UiTheme.stylePrimaryButton(btnSave);
         
         gbc.gridx = 0; gbc.gridy = 4; gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -693,9 +659,7 @@ public class AdminDashboard extends JFrame {
         addFieldToDialog(dlg, "Telefon:", txtTelefon, 3, gbc);
 
         JButton btnSave = new JButton("Ruaj Ndryshimet");
-        btnSave.setBackground(new Color(26, 35, 126));
-        btnSave.setForeground(Color.WHITE);
-        btnSave.setFocusPainted(false);
+        UiTheme.stylePrimaryButton(btnSave);
         
         gbc.gridx = 0; gbc.gridy = 4; gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -779,7 +743,7 @@ public class AdminDashboard extends JFrame {
             public boolean isCellEditable(int r, int c) { return false; }
         };
         tblSubjects = new JTable(modelSubjects);
-        styleTable(tblSubjects);
+        UiTheme.styleTable(tblSubjects);
         JScrollPane scroll = new JScrollPane(tblSubjects);
         panel.add(scroll, BorderLayout.CENTER);
 
@@ -795,12 +759,9 @@ public class AdminDashboard extends JFrame {
             b.setFont(new Font("Segoe UI", Font.BOLD, 12));
             b.setFocusPainted(false);
         }
-        btnAdd.setBackground(new Color(26, 35, 126));
-        btnAdd.setForeground(Color.BLACK);
-        btnEdit.setBackground(new Color(26, 35, 126));
-        btnEdit.setForeground(Color.BLACK);
-        btnDelete.setBackground(new Color(211, 47, 47));
-        btnDelete.setForeground(Color.BLACK);
+        UiTheme.stylePrimaryButton(btnAdd);
+        UiTheme.stylePrimaryButton(btnEdit);
+        UiTheme.styleDangerButton(btnDelete);
 
         crudPanel.add(btnAdd);
         crudPanel.add(btnEdit);
@@ -847,9 +808,7 @@ public class AdminDashboard extends JFrame {
         addFieldToDialog(dlg, "Kreditet:", txtKreditet, 2, gbc);
 
         JButton btnSave = new JButton("Ruaj");
-        btnSave.setBackground(new Color(26, 35, 126));
-        btnSave.setForeground(Color.BLACK);
-        btnSave.setFocusPainted(false);
+        UiTheme.stylePrimaryButton(btnSave);
         
         gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -919,9 +878,7 @@ public class AdminDashboard extends JFrame {
         addFieldToDialog(dlg, "Kreditet:", txtKreditet, 2, gbc);
 
         JButton btnSave = new JButton("Ruaj Ndryshimet");
-        btnSave.setBackground(new Color(26, 35, 126));
-        btnSave.setForeground(Color.BLACK);
-        btnSave.setFocusPainted(false);
+        UiTheme.stylePrimaryButton(btnSave);
         
         gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -1019,16 +976,11 @@ public class AdminDashboard extends JFrame {
         filterPanel.add(cmbFilterType);
 
         JButton btnFilter = new JButton("Filtro");
-        btnFilter.setBackground(new Color(26, 35, 126));
-        btnFilter.setForeground(Color.BLACK);
-        btnFilter.setFocusPainted(false);
+        UiTheme.stylePrimaryButton(btnFilter);
         filterPanel.add(btnFilter);
 
         JButton btnResetFilter = new JButton("Pastro");
-        btnResetFilter.setBackground(Color.WHITE);
-        btnResetFilter.setForeground(new Color(26, 35, 126));
-        btnResetFilter.setBorder(BorderFactory.createLineBorder(new Color(26, 35, 126), 1));
-        btnResetFilter.setFocusPainted(false);
+        UiTheme.styleSecondaryButton(btnResetFilter);
         filterPanel.add(btnResetFilter);
 
         panel.add(filterPanel, BorderLayout.NORTH);
@@ -1040,7 +992,7 @@ public class AdminDashboard extends JFrame {
             public boolean isCellEditable(int r, int c) { return false; }
         };
         tblGrades = new JTable(modelGrades);
-        styleTable(tblGrades);
+        UiTheme.styleTable(tblGrades);
         JScrollPane scroll = new JScrollPane(tblGrades);
         panel.add(scroll, BorderLayout.CENTER);
 
@@ -1056,12 +1008,9 @@ public class AdminDashboard extends JFrame {
             b.setFont(new Font("Segoe UI", Font.BOLD, 12));
             b.setFocusPainted(false);
         }
-        btnAdd.setBackground(new Color(26, 35, 126));
-        btnAdd.setForeground(Color.BLACK);
-        btnEdit.setBackground(new Color(26, 35, 126));
-        btnEdit.setForeground(Color.BLACK);
-        btnDelete.setBackground(new Color(211, 47, 47));
-        btnDelete.setForeground(Color.BLACK);
+        UiTheme.stylePrimaryButton(btnAdd);
+        UiTheme.stylePrimaryButton(btnEdit);
+        UiTheme.styleDangerButton(btnDelete);
 
         crudPanel.add(btnAdd);
         crudPanel.add(btnEdit);
@@ -1213,9 +1162,7 @@ public class AdminDashboard extends JFrame {
         dlg.add(txtDate, gbc);
 
         JButton btnSave = new JButton("Ruaj Notën");
-        btnSave.setBackground(new Color(26, 35, 126));
-        btnSave.setForeground(Color.BLACK);
-        btnSave.setFocusPainted(false);
+        UiTheme.stylePrimaryButton(btnSave);
         
         gbc.gridx = 0; gbc.gridy = 6; gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -1367,9 +1314,7 @@ public class AdminDashboard extends JFrame {
         dlg.add(txtDate, gbc);
 
         JButton btnSave = new JButton("Ruaj Ndryshimet");
-        btnSave.setBackground(new Color(26, 35, 126));
-        btnSave.setForeground(Color.BLACK);
-        btnSave.setFocusPainted(false);
+        UiTheme.stylePrimaryButton(btnSave);
         
         gbc.gridx = 0; gbc.gridy = 6; gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;

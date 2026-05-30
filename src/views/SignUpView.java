@@ -44,15 +44,15 @@ public class SignUpView extends JFrame {
         setResizable(true);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBackground(Color.WHITE);
+        UiTheme.stylePanel(mainPanel);
 
         // Header Panel (Navy Blue)
         JPanel headerPanel = new JPanel(new GridBagLayout());
-        headerPanel.setBackground(new Color(26, 35, 126));
+        UiTheme.styleHeaderPanel(headerPanel);
         headerPanel.setPreferredSize(new Dimension(500, 70));
         JLabel lblTitle = new JLabel("Krijo Llogari të Re");
         lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 18));
-        lblTitle.setForeground(Color.WHITE);
+        UiTheme.styleHeaderTitle(lblTitle);
         headerPanel.add(lblTitle);
         mainPanel.add(headerPanel, BorderLayout.NORTH);
 
@@ -60,11 +60,11 @@ public class SignUpView extends JFrame {
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
         formPanel.setBorder(new EmptyBorder(15, 25, 15, 25));
-        formPanel.setBackground(Color.WHITE);
+        UiTheme.stylePanel(formPanel);
 
         // Common Fields Panel
         JPanel commonPanel = new JPanel(new GridBagLayout());
-        commonPanel.setBackground(Color.WHITE);
+        UiTheme.stylePanel(commonPanel);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(6, 6, 6, 6);
@@ -73,6 +73,7 @@ public class SignUpView extends JFrame {
         gbc.gridx = 0; gbc.gridy = 0; gbc.weightx = 0.3;
         JLabel lblUsername = new JLabel("Përdoruesi:");
         lblUsername.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        UiTheme.styleFormLabel(lblUsername);
         commonPanel.add(lblUsername, gbc);
 
         gbc.gridx = 1; gbc.gridy = 0; gbc.weightx = 0.7;
@@ -84,6 +85,7 @@ public class SignUpView extends JFrame {
         gbc.gridx = 0; gbc.gridy = 1; gbc.weightx = 0.3;
         JLabel lblPassword = new JLabel("Fjalëkalimi:");
         lblPassword.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        UiTheme.styleFormLabel(lblPassword);
         commonPanel.add(lblPassword, gbc);
 
         gbc.gridx = 1; gbc.gridy = 1; gbc.weightx = 0.7;
@@ -95,6 +97,7 @@ public class SignUpView extends JFrame {
         gbc.gridx = 0; gbc.gridy = 2; gbc.weightx = 0.3;
         JLabel lblConfirm = new JLabel("Konfirmo Fjalëkalimin:");
         lblConfirm.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        UiTheme.styleFormLabel(lblConfirm);
         commonPanel.add(lblConfirm, gbc);
 
         gbc.gridx = 1; gbc.gridy = 2; gbc.weightx = 0.7;
@@ -106,6 +109,7 @@ public class SignUpView extends JFrame {
         gbc.gridx = 0; gbc.gridy = 3; gbc.weightx = 0.3;
         JLabel lblRole = new JLabel("Roli:");
         lblRole.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        UiTheme.styleFormLabel(lblRole);
         commonPanel.add(lblRole, gbc);
 
         gbc.gridx = 1; gbc.gridy = 3; gbc.weightx = 0.7;
@@ -118,18 +122,18 @@ public class SignUpView extends JFrame {
         // Separator
         formPanel.add(Box.createVerticalStrut(10));
         JSeparator separator = new JSeparator();
-        separator.setForeground(new Color(224, 224, 224));
+        separator.setForeground(UiTheme.GRID);
         formPanel.add(separator);
         formPanel.add(Box.createVerticalStrut(10));
 
         // Card Panel for Role-Specific fields
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
-        cardPanel.setBackground(Color.WHITE);
+        UiTheme.stylePanel(cardPanel);
 
         // Teacher Card
         JPanel teacherCard = new JPanel(new GridBagLayout());
-        teacherCard.setBackground(Color.WHITE);
+        UiTheme.stylePanel(teacherCard);
         GridBagConstraints tGbc = new GridBagConstraints();
         tGbc.fill = GridBagConstraints.HORIZONTAL;
         tGbc.insets = new Insets(6, 6, 6, 6);
@@ -174,7 +178,7 @@ public class SignUpView extends JFrame {
 
         // Student Card
         JPanel studentCard = new JPanel(new GridBagLayout());
-        studentCard.setBackground(Color.WHITE);
+        UiTheme.stylePanel(studentCard);
         GridBagConstraints sGbc = new GridBagConstraints();
         sGbc.fill = GridBagConstraints.HORIZONTAL;
         sGbc.insets = new Insets(6, 6, 6, 6);
@@ -230,23 +234,17 @@ public class SignUpView extends JFrame {
 
         // Buttons Panel
         JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 15));
-        buttonsPanel.setBackground(Color.WHITE);
+        UiTheme.stylePanel(buttonsPanel);
 
         JButton btnSubmit = new JButton("Regjistrohu");
         btnSubmit.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        btnSubmit.setBackground(new Color(26, 35, 126));
-        btnSubmit.setForeground(new Color(26 , 35 ,126));
+        UiTheme.stylePrimaryButton(btnSubmit, 8, 20);
         btnSubmit.setPreferredSize(new Dimension(140, 35));
-        btnSubmit.setFocusPainted(false);
-        btnSubmit.setBorder(BorderFactory.createEmptyBorder());
 
         JButton btnBack = new JButton("Kthehu pas");
         btnBack.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        btnBack.setBackground(Color.WHITE);
-        btnBack.setForeground(new Color(26, 35, 126));
+        UiTheme.styleSecondaryButton(btnBack);
         btnBack.setPreferredSize(new Dimension(140, 35));
-        btnBack.setFocusPainted(false);
-        btnBack.setBorder(BorderFactory.createLineBorder(new Color(26, 35, 126), 1));
 
         buttonsPanel.add(btnSubmit);
         buttonsPanel.add(btnBack);

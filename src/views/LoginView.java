@@ -26,24 +26,24 @@ public class LoginView extends JFrame {
 
         // Main Panel with BorderLayout
         JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBackground(Color.WHITE);
+        UiTheme.stylePanel(mainPanel);
 
         // Header Panel (Navy Blue)
         JPanel headerPanel = new JPanel();
-        headerPanel.setBackground(new Color(26, 35, 126)); // Navy blue (#1a237e)
+        UiTheme.styleHeaderPanel(headerPanel);
         headerPanel.setPreferredSize(new Dimension(450, 80));
         headerPanel.setLayout(new GridBagLayout());
         
         JLabel lblTitle = new JLabel("School Management System");
         lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 20));
-        lblTitle.setForeground(Color.WHITE);
+        UiTheme.styleHeaderTitle(lblTitle);
         headerPanel.add(lblTitle);
 
         mainPanel.add(headerPanel, BorderLayout.NORTH);
 
         // Form Panel (White background, GridBagLayout for alignment)
         JPanel formPanel = new JPanel(new GridBagLayout());
-        formPanel.setBackground(Color.WHITE);
+        UiTheme.stylePanel(formPanel);
         formPanel.setBorder(new EmptyBorder(30, 40, 30, 40));
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -53,7 +53,7 @@ public class LoginView extends JFrame {
         // Username
         JLabel lblUsername = new JLabel("Username:");
         lblUsername.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        lblUsername.setForeground(new Color(33, 33, 33));
+        UiTheme.styleFormLabel(lblUsername);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 0.3;
@@ -70,7 +70,7 @@ public class LoginView extends JFrame {
         // Password
         JLabel lblPassword = new JLabel("Password:");
         lblPassword.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        lblPassword.setForeground(new Color(33, 33, 33));
+        UiTheme.styleFormLabel(lblPassword);
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.weightx = 0.3;
@@ -86,23 +86,17 @@ public class LoginView extends JFrame {
 
         // Buttons Panel
         JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
-        buttonsPanel.setBackground(Color.WHITE);
+        UiTheme.stylePanel(buttonsPanel);
 
         btnLogin = new JButton("Login");
         btnLogin.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        btnLogin.setBackground(new Color(26, 35, 126));
-        btnLogin.setForeground(new Color(26 , 35 ,126));
+        UiTheme.stylePrimaryButton(btnLogin, 8, 20);
         btnLogin.setPreferredSize(new Dimension(110, 35));
-        btnLogin.setFocusPainted(false);
-        btnLogin.setBorder(BorderFactory.createEmptyBorder());
 
         btnSignUp = new JButton("Sign Up");
         btnSignUp.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        btnSignUp.setBackground(Color.WHITE);
-        btnSignUp.setForeground(new Color(26, 35, 126));
+        UiTheme.styleSecondaryButton(btnSignUp);
         btnSignUp.setPreferredSize(new Dimension(110, 35));
-        btnSignUp.setFocusPainted(false);
-        btnSignUp.setBorder(BorderFactory.createLineBorder(new Color(26, 35, 126), 1));
 
         buttonsPanel.add(btnLogin);
         buttonsPanel.add(btnSignUp);

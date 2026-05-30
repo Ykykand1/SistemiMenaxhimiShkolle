@@ -17,9 +17,9 @@ public class DBConnection {
         try {
             if (connection == null || connection.isClosed()) {
                 Class.forName("org.postgresql.Driver");
-                String url = "jdbc:postgresql://localhost:5432/shkolla_db";
-                String user = "postgres";
-                String password = "12345"; // Change if your PG password is different
+                String url = EnvConfig.get("DB_URL", "jdbc:postgresql://localhost:5432/shkolla_db");
+                String user = EnvConfig.get("DB_USER", "postgres");
+                String password = EnvConfig.get("DB_PASSWORD", "");
                 connection = DriverManager.getConnection(url, user, password);
                 warnIfUsersTableMissing(connection);
             }

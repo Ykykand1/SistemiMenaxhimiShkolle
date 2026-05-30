@@ -47,17 +47,17 @@ public class StudentDashboard extends JFrame {
 
         // Main Container
         JPanel mainContainer = new JPanel(new BorderLayout());
-        mainContainer.setBackground(Color.WHITE);
+        UiTheme.stylePanel(mainContainer);
 
         // Header Panel (Navy Blue)
         JPanel headerPanel = new JPanel(new BorderLayout());
-        headerPanel.setBackground(new Color(26, 35, 126));
+        UiTheme.styleHeaderPanel(headerPanel);
         headerPanel.setPreferredSize(new Dimension(800, 70));
         headerPanel.setBorder(new EmptyBorder(10, 20, 10, 20));
 
         JLabel lblTitle = new JLabel("School Management System - Nxënësi");
         lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 18));
-        lblTitle.setForeground(Color.WHITE);
+        UiTheme.styleHeaderTitle(lblTitle);
         headerPanel.add(lblTitle, BorderLayout.WEST);
 
         JPanel headerRight = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 5));
@@ -65,14 +65,10 @@ public class StudentDashboard extends JFrame {
 
         JLabel lblWelcome = new JLabel("Nxënësi: " + currentStudent.getEmri() + " " + currentStudent.getMbiemri());
         lblWelcome.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        lblWelcome.setForeground(Color.WHITE);
+        UiTheme.styleHeaderTitle(lblWelcome);
 
         JButton btnLogout = new JButton("Çkyçu");
-        btnLogout.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        btnLogout.setBackground(Color.WHITE);
-        btnLogout.setForeground(new Color(26, 35, 126));
-        btnLogout.setFocusPainted(false);
-        btnLogout.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
+        UiTheme.styleHeaderLogoutButton(btnLogout);
         btnLogout.addActionListener(e -> {
             dispose();
             new LoginView().setVisible(true);
@@ -86,6 +82,7 @@ public class StudentDashboard extends JFrame {
         // JTabbedPane
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        UiTheme.styleTabbedPane(tabbedPane);
 
         // Tab 1: Profili im
         tabbedPane.addTab("Profili Im", createProfilePanel());
@@ -100,23 +97,12 @@ public class StudentDashboard extends JFrame {
         refreshMyGrades();
     }
 
-    private void styleTable(JTable table) {
-        table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        table.getTableHeader().setBackground(new Color(26, 35, 126));
-        table.getTableHeader().setForeground(Color.WHITE);
-        table.setRowHeight(28);
-        table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        table.setGridColor(new Color(224, 224, 224));
-        table.setSelectionBackground(new Color(224, 242, 241));
-        table.setSelectionForeground(Color.BLACK);
-    }
-
     // ==========================================
     // TAB 1: PROFILE PANEL
     // ==========================================
     private JPanel createProfilePanel() {
         JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBackground(Color.WHITE);
+        UiTheme.stylePanel(panel);
         panel.setBorder(new EmptyBorder(30, 40, 30, 40));
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -125,11 +111,11 @@ public class StudentDashboard extends JFrame {
 
         // Profile icon card placeholder feel
         JPanel cardHeader = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        cardHeader.setBackground(new Color(237, 240, 255));
+        cardHeader.setBackground(UiTheme.PRIMARY_LIGHT);
         cardHeader.setPreferredSize(new Dimension(300, 40));
         JLabel lblHeaderCard = new JLabel("Karta e Nxënësit");
         lblHeaderCard.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        lblHeaderCard.setForeground(new Color(26, 35, 126));
+        lblHeaderCard.setForeground(UiTheme.PRIMARY);
         cardHeader.add(lblHeaderCard);
         
         gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
@@ -154,13 +140,13 @@ public class StudentDashboard extends JFrame {
         gbc.gridx = 0; gbc.gridy = row; gbc.weightx = 0.4;
         JLabel lblName = new JLabel(label);
         lblName.setFont(new Font("Segoe UI", Font.BOLD, 13));
-        lblName.setForeground(new Color(75, 75, 75));
+        lblName.setForeground(UiTheme.TEXT_SECONDARY);
         panel.add(lblName, gbc);
 
         gbc.gridx = 1; gbc.gridy = row; gbc.weightx = 0.6;
         JLabel lblVal = new JLabel(value != null && !value.isEmpty() ? value : "Pa plotësuar");
         lblVal.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-        lblVal.setForeground(Color.BLACK);
+        lblVal.setForeground(UiTheme.TEXT_PRIMARY);
         panel.add(lblVal, gbc);
     }
 
@@ -169,11 +155,12 @@ public class StudentDashboard extends JFrame {
     // ==========================================
     private JPanel createMyGradesPanel() {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBackground(Color.WHITE);
+        UiTheme.stylePanel(panel);
         panel.setBorder(new EmptyBorder(15, 15, 15, 15));
 
         JLabel lblTitle = new JLabel("Pasqyra e notave të mia:");
         lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        lblTitle.setForeground(UiTheme.TEXT_PRIMARY);
         lblTitle.setBorder(new EmptyBorder(0, 0, 10, 0));
         panel.add(lblTitle, BorderLayout.NORTH);
 
@@ -183,17 +170,19 @@ public class StudentDashboard extends JFrame {
             public boolean isCellEditable(int r, int c) { return false; }
         };
         tblMyGrades = new JTable(modelMyGrades);
-        styleTable(tblMyGrades);
-        panel.add(new JScrollPane(tblMyGrades), BorderLayout.CENTER);
+        UiTheme.styleTable(tblMyGrades);
+        JScrollPane gradesScroll = new JScrollPane(tblMyGrades);
+        UiTheme.styleScrollPane(gradesScroll);
+        panel.add(gradesScroll, BorderLayout.CENTER);
 
         // Bottom GPA Display
         JPanel bottomPanel = new JPanel(new BorderLayout());
-        bottomPanel.setBackground(Color.WHITE);
+        UiTheme.stylePanel(bottomPanel);
         bottomPanel.setBorder(new EmptyBorder(10, 10, 0, 10));
 
         lblAverage = new JLabel("Nota Mesatare: 0.00");
         lblAverage.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        lblAverage.setForeground(new Color(26, 35, 126));
+        lblAverage.setForeground(UiTheme.PRIMARY);
         bottomPanel.add(lblAverage, BorderLayout.EAST);
         panel.add(bottomPanel, BorderLayout.SOUTH);
 

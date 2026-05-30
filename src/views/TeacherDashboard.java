@@ -51,17 +51,17 @@ public class TeacherDashboard extends JFrame {
 
         // Main Panel
         JPanel mainContainer = new JPanel(new BorderLayout());
-        mainContainer.setBackground(Color.WHITE);
+        UiTheme.stylePanel(mainContainer);
 
         // Header Panel (Navy Blue)
         JPanel headerPanel = new JPanel(new BorderLayout());
-        headerPanel.setBackground(new Color(26, 35, 126));
+        UiTheme.styleHeaderPanel(headerPanel);
         headerPanel.setPreferredSize(new Dimension(850, 70));
         headerPanel.setBorder(new EmptyBorder(10, 20, 10, 20));
 
         JLabel lblTitle = new JLabel("School Management System - Mësuesi");
         lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 18));
-        lblTitle.setForeground(Color.WHITE);
+        UiTheme.styleHeaderTitle(lblTitle);
         headerPanel.add(lblTitle, BorderLayout.WEST);
 
         JPanel headerRight = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 5));
@@ -69,14 +69,10 @@ public class TeacherDashboard extends JFrame {
 
         JLabel lblWelcome = new JLabel("Mësuesi: " + currentTeacher.getEmri() + " " + currentTeacher.getMbiemri());
         lblWelcome.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        lblWelcome.setForeground(Color.WHITE);
+        UiTheme.styleHeaderTitle(lblWelcome);
 
         JButton btnLogout = new JButton("Çkyçu");
-        btnLogout.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        btnLogout.setBackground(Color.WHITE);
-        btnLogout.setForeground(new Color(26, 35, 126));
-        btnLogout.setFocusPainted(false);
-        btnLogout.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
+        UiTheme.styleHeaderLogoutButton(btnLogout);
         btnLogout.addActionListener(e -> {
             dispose();
             new LoginView().setVisible(true);
@@ -90,6 +86,7 @@ public class TeacherDashboard extends JFrame {
         // JTabbedPane
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        UiTheme.styleTabbedPane(tabbedPane);
 
         // Tab 1: Lëndët e mia
         tabbedPane.addTab("Lëndët e Mia", createMySubjectsPanel());
@@ -106,27 +103,17 @@ public class TeacherDashboard extends JFrame {
         refreshGradesTable();
     }
 
-    private void styleTable(JTable table) {
-        table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        table.getTableHeader().setBackground(new Color(26, 35, 126));
-        table.getTableHeader().setForeground(Color.WHITE);
-        table.setRowHeight(28);
-        table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        table.setGridColor(new Color(224, 224, 224));
-        table.setSelectionBackground(new Color(224, 242, 241));
-        table.setSelectionForeground(Color.BLACK);
-    }
-
     // ==========================================
     // TAB 1: MY SUBJECTS
     // ==========================================
     private JPanel createMySubjectsPanel() {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBackground(Color.WHITE);
+        UiTheme.stylePanel(panel);
         panel.setBorder(new EmptyBorder(15, 15, 15, 15));
 
         JLabel lblTitle = new JLabel("Lista e lëndëve që unë jap mësim:");
         lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        lblTitle.setForeground(UiTheme.TEXT_PRIMARY);
         lblTitle.setBorder(new EmptyBorder(0, 0, 10, 0));
         panel.add(lblTitle, BorderLayout.NORTH);
 
@@ -136,8 +123,10 @@ public class TeacherDashboard extends JFrame {
             public boolean isCellEditable(int r, int c) { return false; }
         };
         tblMySubjects = new JTable(modelMySubjects);
-        styleTable(tblMySubjects);
-        panel.add(new JScrollPane(tblMySubjects), BorderLayout.CENTER);
+        UiTheme.styleTable(tblMySubjects);
+        JScrollPane subjectsScroll = new JScrollPane(tblMySubjects);
+        UiTheme.styleScrollPane(subjectsScroll);
+        panel.add(subjectsScroll, BorderLayout.CENTER);
 
         return panel;
     }
@@ -157,13 +146,15 @@ public class TeacherDashboard extends JFrame {
     // ==========================================
     private JPanel createGradesPanel() {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBackground(Color.WHITE);
+        UiTheme.stylePanel(panel);
         panel.setBorder(new EmptyBorder(15, 15, 15, 15));
 
         // Filter by subject combo
         JPanel filterPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 5));
-        filterPanel.setBackground(Color.WHITE);
-        filterPanel.add(new JLabel("Zgjidh Lëndën:"));
+        UiTheme.stylePanel(filterPanel);
+        JLabel lblSubject = new JLabel("Zgjidh Lëndën:");
+        lblSubject.setForeground(UiTheme.TEXT_PRIMARY);
+        filterPanel.add(lblSubject);
 
         cmbMySubjectsList = new JComboBox<>();
         cmbMySubjectsList.setFont(new Font("Segoe UI", Font.PLAIN, 12));
@@ -178,27 +169,22 @@ public class TeacherDashboard extends JFrame {
             public boolean isCellEditable(int r, int c) { return false; }
         };
         tblGrades = new JTable(modelGrades);
-        styleTable(tblGrades);
-        panel.add(new JScrollPane(tblGrades), BorderLayout.CENTER);
+        UiTheme.styleTable(tblGrades);
+        JScrollPane gradesScroll = new JScrollPane(tblGrades);
+        UiTheme.styleScrollPane(gradesScroll);
+        panel.add(gradesScroll, BorderLayout.CENTER);
 
         // Buttons (CRUD)
         JPanel crudPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
-        crudPanel.setBackground(Color.WHITE);
+        UiTheme.stylePanel(crudPanel);
 
         JButton btnAdd = new JButton("Shto Notë");
         JButton btnEdit = new JButton("Ndrysho");
         JButton btnDelete = new JButton("Fshi");
 
-        for (JButton b : new JButton[]{btnAdd, btnEdit, btnDelete}) {
-            b.setFont(new Font("Segoe UI", Font.BOLD, 12));
-            b.setFocusPainted(false);
-        }
-        btnAdd.setBackground(new Color(26, 35, 126));
-        btnAdd.setForeground(Color.WHITE);
-        btnEdit.setBackground(new Color(26, 35, 126));
-        btnEdit.setForeground(Color.WHITE);
-        btnDelete.setBackground(new Color(211, 47, 47));
-        btnDelete.setForeground(Color.WHITE);
+        UiTheme.stylePrimaryButton(btnAdd);
+        UiTheme.stylePrimaryButton(btnEdit);
+        UiTheme.styleDangerButton(btnDelete);
 
         crudPanel.add(btnAdd);
         crudPanel.add(btnEdit);
@@ -293,9 +279,7 @@ public class TeacherDashboard extends JFrame {
         dlg.add(txtDate, gbc);
 
         JButton btnSave = new JButton("Ruaj Notën");
-        btnSave.setBackground(new Color(26, 35, 126));
-        btnSave.setForeground(Color.WHITE);
-        btnSave.setFocusPainted(false);
+        UiTheme.stylePrimaryButton(btnSave);
         
         gbc.gridx = 0; gbc.gridy = 4; gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
@@ -401,9 +385,7 @@ public class TeacherDashboard extends JFrame {
         dlg.add(txtDate, gbc);
 
         JButton btnSave = new JButton("Ruaj Ndryshimet");
-        btnSave.setBackground(new Color(26, 35, 126));
-        btnSave.setForeground(Color.WHITE);
-        btnSave.setFocusPainted(false);
+        UiTheme.stylePrimaryButton(btnSave);
         
         gbc.gridx = 0; gbc.gridy = 4; gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
